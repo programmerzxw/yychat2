@@ -1,0 +1,22 @@
+package com.yychatclient.control;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class ClientConect {
+	Socket s;
+	public ClientConect(){
+		try {
+			s=new Socket("127.0,0,1",3456);
+		} catch (UnknownHostException e) {		
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}//本机地址，回测地址
+	}
+	
+
+	}
+
+
