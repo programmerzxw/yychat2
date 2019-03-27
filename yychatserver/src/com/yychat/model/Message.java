@@ -2,12 +2,20 @@ package com.yychat.model;
 
 import java.io.Serializable;
 
-public class Message implements Serializable{
+public class Message implements Serializable,MessageType{//¿‡ «µ•ºÃ≥–
     private String sender;
     private String receiver;
+    private String content;
+    
     private String messageType;
     
- public String getSender() {
+ public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+public String getSender() {
   return sender;
  }
  public void setSender(String sender) {
