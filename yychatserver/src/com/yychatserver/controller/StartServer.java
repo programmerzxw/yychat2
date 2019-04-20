@@ -47,7 +47,7 @@ public class StartServer {
 	  //接收聊天信息，？？不可以，应该新建一个接收线程
 	  if(passWord.equals("123456")){
 		  hmSocket.put(userName,s);
-		  new ServerReceiverThread(s).start();//就绪
+		  new ServerReceiverThread(s).start();//就绪，每一个用户都有一个对应的线程
 	  }
 	  
   }
