@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.naming.spi.DirStateFactory.Result;
+import javax.swing.plaf.SliderUI;
 
 import com.yychat.model.Message;
 import com.yychat.model.User;
@@ -73,6 +74,21 @@ public class StartServer {
 	  if(passWord.equals("123456")){//对象
 	   //告诉客户端密码验证通过的消息，可以创建一个Massage类
 	   mess.setMessageType(Message.message_LoginSuccess);//"1"为验证通过
+	   
+	   //利用数据表中的好友信息来更新好友列表
+	   //1，服务器查询好友信息表，并发送到客户端
+	   String friend_Relation_Sql="select slaveuser from relation where majoruser=? and relationtype='1'";
+	   ptmt=conn.prepareStatement(friend_Relation_Sql);
+	   ptmt.setString(1,userName);
+	   rs=ptmt.executeQuery();
+	   String friendString="";
+	   while(rs.next()){
+		   friendString=friendString+rs.getString("Slaveuser")+" ";
+		   
+	   }
+	   mess.setContent(friendString);
+	   System.out.println(userName+"的relation数据表中好友："+friendString);
+	   
 	  }else{
 	   mess.setMessageType(Message.message_LoginFailure);//"0"为验证失败
 	  }
